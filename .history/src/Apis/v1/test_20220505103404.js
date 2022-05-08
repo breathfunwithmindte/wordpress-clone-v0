@@ -1,0 +1,32 @@
+const fs = require("fs");
+
+module.exports = class TestController {
+
+  /**
+   * list<object>
+   * md: http method
+   * m: controller method
+   * p: path
+   * t: response type
+   * mdl: list of middlewares
+   */
+  static use = [
+    { md: "get",m: "test", mdl: [],t: "json", p: "/test" },
+    { md: "get",m: "test1", mdl: [],t: "json", p: "/test1" },
+  ];
+
+  static async test(req, res, next) {
+
+    res.render("")
+    return "hello world";
+  }
+
+  static async test1(req, res, next) {
+    const str = fs.readFileSync(root + "/views/home.ejs").toString()
+
+    res.status(200).json({m: str.split("<body>((.|\n)*)</body>")})
+    return "hello world";
+  }
+
+
+};
